@@ -17,3 +17,8 @@ def read_tasks() -> List[Dict[str, Any]]:
 def write_tasks(tasks : List[Dict[str, Any]]):
     with DB_PATH.open("w") as f:
         json.dump(tasks, f, indent = 4)
+
+def reindex_tasks(tasks : List[Dict[str,Any]]) -> List[Dict[str,Any]]:
+    for new_id, task in enumerate(tasks, start=1):
+        task["id"] = new_id
+    return tasks
